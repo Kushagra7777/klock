@@ -201,7 +201,8 @@
             <div class="col text-center" id="welcome">
               <h2>Welcome</h2>
               <p>Sign in for the best experience</p>
-              <button class="btn">Sign in securely</button>
+              <button id="signInBtn" class="btn">Sign in securely</button>
+              <p id="feedback-box" style="color: green; font-weight: bold; margin-top: 10px;"></p>
               <div class="footer">
                 New to Amazon? <a href="#">Start here</a>
               </div>
@@ -390,6 +391,26 @@
       </div>
     </div>
   </footer>
+  
+  <div id="toast" style="
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 12px;
+  position: fixed;
+  z-index: 9999;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-family: sans-serif;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  transition: visibility 0s, opacity 0.5s linear;
+  opacity: 0;
+"></div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
