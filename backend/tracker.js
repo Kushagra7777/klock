@@ -19,7 +19,6 @@
     };
     eventLog.push(logEntry);
 
-    
     fetch("http://localhost:8000/api/log", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -27,7 +26,6 @@
     });
   };
 
-  
   const clickMap = {};
   document.addEventListener("click", (e) => {
     const target = e.target.closest("button, a, input");
@@ -38,7 +36,7 @@
 
     if (!clickMap[id]) clickMap[id] = [];
     clickMap[id].push(now);
-    clickMap[id] = clickMap[id].filter(ts => now - ts < 2000); 
+    clickMap[id] = clickMap[id].filter(ts => now - ts < 2000);
 
     if (clickMap[id].length >= 3) {
       log("rage_click", {
@@ -56,7 +54,6 @@
     });
   });
 
-  // Input tracking
   document.querySelectorAll("input, textarea, select").forEach((el) => {
     el.addEventListener("focus", () => {
       log("input_focus", { name: el.name || el.id || el.placeholder || "unknown" });
@@ -65,27 +62,7 @@
       log("input_type", { name: el.name || el.id });
     });
   });
-
-  // Scroll tracking
-  let scrollTimeout = null;
-  window.addEventListener("scroll", () => {
-    if (scrollTimeout) clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      const scrollDepth = window.scrollY / document.body.scrollHeight;
-      log("scroll", { scrollDepth: scrollDepth.toFixed(2) });
-    }, 500);
-  });
-
-  // Section in-view detection
-  const trackedSections = document.querySelectorAll("[data-brainfish-watch]");
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        log("section_view", { id: entry.target.id });
-      }
-    });
-  });
-  trackedSections.forEach(el => observer.observe(el));
+g
 
   // Continuous mouse motion detection
   let isMouseMoving = false;
@@ -112,7 +89,6 @@
     }, 1000);
   });
 
-  // On unload — final summary log
   window.addEventListener("beforeunload", () => {
     const totalTime = (Date.now() - startTime) / 1000;
     log("session_end", {
