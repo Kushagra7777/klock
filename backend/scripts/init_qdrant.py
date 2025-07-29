@@ -14,6 +14,6 @@ if not client.collection_exists(COLLECTION_NAME):
         collection_name=COLLECTION_NAME,
         vectors_config=VectorParams(size=1536, distance=Distance.COSINE)
     )
-    print(f"✅ Created collection: {COLLECTION_NAME}")
+    print(f"Created collection: {COLLECTION_NAME}")
 else:
-    print(f"✅ Collection already exists: {COLLECTION_NAME}")
+    print(f"Collection already exists: {COLLECTION_NAME}")

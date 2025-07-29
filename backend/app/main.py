@@ -1,16 +1,23 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from app.api import chat  # make sure app/api/chat.py exists and defines `router`
+from app.api import chat 
 
-# Load environment variables from .env file
 load_dotenv()
 
-# Create FastAPI app
 app = FastAPI(
     title="Klock Backend",
     version="1.0",
     description="RAG + LLM API backend for chat assistant"
 )
 
-# Include chat routes
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(chat.router, prefix="/chat", tags=["Chat"])
+

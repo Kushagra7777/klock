@@ -23,7 +23,7 @@ def extract_text_from_file(filepath):
             with open(filepath, "r", encoding="utf-8") as f:
                 return f.read()
     except Exception as e:
-        print(f"⚠️ Failed to extract {filepath}: {e}")
+        print(f"Failed to extract {filepath}: {e}")
     return ""
 
 # Split text into chunks
@@ -38,15 +38,15 @@ with open(output_file, "w", encoding="utf-8") as out_f:
         if not os.path.isfile(filepath):
             continue
 
-        print(f"📄 Processing: {filename}")
+        print(f"Processing: {filename}")
         text = extract_text_from_file(filepath)
 
         if not text.strip():
-            print(f"⚠️ No text extracted from {filename}, skipping.")
+            print(f"No text extracted from {filename}, skipping.")
             continue
 
         chunks = chunk_text(text)
-        print(f"✅ {len(chunks)} chunks extracted from {filename}")
+        print(f"{len(chunks)} chunks extracted from {filename}")
 
         for i, chunk in enumerate(chunks):
             json.dump({
@@ -56,4 +56,3 @@ with open(output_file, "w", encoding="utf-8") as out_f:
             }, out_f)
             out_f.write("\n")
 
-print(f"\n🎉 Finished! Parsed chunks saved to {output_file}")
