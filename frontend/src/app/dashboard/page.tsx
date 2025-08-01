@@ -1,109 +1,191 @@
-import Link from "next/link";
-import { DashboardHeader } from "@/components/DashboardHeader";
-import { Button } from "@/components/Button";
+// "use client";
 
-export default function DashboardPage() {
+// import React, { useState } from "react";
+
+// const DashboardPage = () => {
+//   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+//   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
+//   const [code, setCode] = useState<string>("");
+
+//   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//     const file = event.target.files?.[0];
+//     if (file) {
+//       setSelectedFile(file);
+//       setUploadedFileName(file.name);
+//     }
+//   };
+
+//   const handleCopyCode = () => {
+//     navigator.clipboard.writeText(code);
+//     alert("Code copied to clipboard!");
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gray-50 py-10 px-4">
+//       <div className="max-w-3xl mx-auto space-y-10">
+//         <h1 className="text-3xl font-bold text-gray-800 text-center">📊 Dashboard</h1>
+
+//         {/* Upload Section */}
+//         <div className="card space-y-4">
+//           <h2 className="section-title">📁 Upload File</h2>
+
+//           <label className="flex flex-col items-center justify-center h-40 w-full max-w-md mx-auto border-2 border-dashed border-gray-300 rounded-md bg-gray-100 hover:bg-gray-200 transition cursor-pointer overflow-hidden relative">
+//             <input
+//               type="file"
+//               className="absolute inset-0 opacity-0 cursor-pointer"
+//               accept=".pdf,.docx,.txt"
+//               onChange={handleFileChange}
+//             />
+
+//             {/* SVG Icon - Hardcoded size to prevent giant rendering */}
+//             <svg
+//               width="32"
+//               height="32"
+//               viewBox="0 0 24 24"
+//               fill="none"
+//               xmlns="http://www.w3.org/2000/svg"
+//               className="mb-2 text-gray-500"
+//             >
+//               <path
+//                 d="M12 16V8M12 8L8 12M12 8L16 12M5 20H19C20.1 20 21 19.1 21 18V10C21 8.9 20.1 8 19 8H17.59C17.21 6.84 16.18 6 15 6H9C7.82 6 6.79 6.84 6.41 8H5C3.9 8 3 8.9 3 10V18C3 19.1 3.9 20 5 20Z"
+//                 stroke="currentColor"
+//                 strokeWidth="2"
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//               />
+//             </svg>
+
+//             <p className="text-sm text-gray-600 font-medium">Click to upload or drag & drop</p>
+//             <p className="text-xs text-gray-400">PDF / DOCX / TXT — Max 10MB</p>
+//           </label>
+
+//           {uploadedFileName && (
+//             <div className="text-green-700 bg-green-50 p-3 rounded-md text-sm text-center">
+//               ✅ Uploaded: <span className="font-medium">{uploadedFileName}</span>
+//             </div>
+//           )}
+//         </div>
+
+//         {/* Code Box Section */}
+//         <div className="card space-y-4">
+//           <h2 className="section-title">💻 Code Box</h2>
+//           <textarea
+//             value={code}
+//             onChange={(e) => setCode(e.target.value)}
+//             placeholder="Paste or write code here..."
+//             className="textarea h-40 font-mono resize-none"
+//           />
+//           <div className="flex justify-end">
+//             <button
+//               onClick={handleCopyCode}
+//               disabled={!code.trim()}
+//               className={`btn-primary ${!code.trim() ? "opacity-50 cursor-not-allowed" : ""}`}
+//             >
+//               Copy Code
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default DashboardPage;
+
+
+
+
+"use client";
+
+import React, { useState } from "react";
+
+const DashboardPage = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
+  const [code, setCode] = useState<string>("");
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+      setUploadedFileName(file.name);
+    }
+  };
+
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(code);
+    alert("Code copied to clipboard!");
+  };
+
   return (
-    <div>
-      <DashboardHeader 
-        title="Dashboard" 
-        subtitle="Welcome to your Klock dashboard"
-      />
-      
-      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="flex items-center">
-            <div className="flex-shrink-0 bg-indigo-100 p-3 rounded-md">
-              <svg className="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-              </svg>
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white py-12 px-4">
+      <div className="max-w-3xl mx-auto space-y-12">
+        <h1 className="text-4xl font-extrabold text-gray-800 text-center">📊 Dashboard</h1>
+
+        {/* Upload Section */}
+        <div className="bg-white/70 backdrop-blur-md shadow-md rounded-2xl p-6 space-y-4">
+          <h2 className="text-xl font-semibold text-gray-700 mb-2">📁 Upload File</h2>
+
+          <label className="flex flex-col items-center justify-center h-44 w-full max-w-lg mx-auto border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 hover:bg-gray-100 transition cursor-pointer">
+            <input
+              type="file"
+              className="absolute inset-0 opacity-0 cursor-pointer"
+              accept=".pdf,.docx,.txt"
+              onChange={handleFileChange}
+            />
+
+            <svg
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="mb-2 text-gray-500"
+            >
+              <path
+                d="M12 16V8M12 8L8 12M12 8L16 12M5 20H19C20.1 20 21 19.1 21 18V10C21 8.9 20.1 8 19 8H17.59C17.21 6.84 16.18 6 15 6H9C7.82 6 6.79 6.84 6.41 8H5C3.9 8 3 8.9 3 10V18C3 19.1 3.9 20 5 20Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+
+            <p className="text-sm text-gray-600 font-medium">Click to upload or drag & drop</p>
+            <p className="text-xs text-gray-400">PDF / DOCX / TXT — Max 10MB</p>
+          </label>
+
+          {uploadedFileName && (
+            <div className="text-green-700 bg-green-50 p-3 rounded-md text-sm text-center font-medium">
+              ✅ Uploaded: {uploadedFileName}
             </div>
-            <div className="ml-4">
-              <h3 className="text-lg font-medium text-gray-900">Upload Documents</h3>
-              <p className="mt-1 text-sm text-gray-500">
-                Upload new files to your document library.
-              </p>
-            </div>
-          </div>
-          <div className="mt-4">
-            <Link href="/dashboard/upload">
-              <Button variant="primary" className="w-full justify-center">
-                Upload Files
-              </Button>
-            </Link>
-          </div>
+          )}
         </div>
-        
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="flex items-center">
-            <div className="flex-shrink-0 bg-green-100 p-3 rounded-md">
-              <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-              </svg>
-            </div>
-            <div className="ml-4">
-              <h3 className="text-lg font-medium text-gray-900">Manage Files</h3>
-              <p className="mt-1 text-sm text-gray-500">
-                View and organize all your uploaded files.
-              </p>
-            </div>
-          </div>
-          <div className="mt-4">
-            <Link href="/dashboard/files">
-              <Button variant="secondary" className="w-full justify-center">
-                View Files
-              </Button>
-            </Link>
-          </div>
-        </div>
-        
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="flex items-center">
-            <div className="flex-shrink-0 bg-blue-100 p-3 rounded-md">
-              <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-              </svg>
-            </div>
-            <div className="ml-4">
-              <h3 className="text-lg font-medium text-gray-900">Embed Chatbot</h3>
-              <p className="mt-1 text-sm text-gray-500">
-                Get your chat widget code to embed on your site.
-              </p>
-            </div>
-          </div>
-          <div className="mt-4">
-            <Link href="/dashboard/embed">
-              <Button variant="secondary" className="w-full justify-center">
-                Get Embed Code
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-      
-      <div className="mt-8 bg-white shadow rounded-lg p-6">
-        <h3 className="text-lg font-medium text-gray-900">Getting Started</h3>
-        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="border border-gray-200 rounded-lg p-4">
-            <div className="text-sm font-medium text-gray-900">1. Upload Documents</div>
-            <p className="mt-1 text-sm text-gray-500">
-              Start by uploading your documents to the system.
-            </p>
-          </div>
-          <div className="border border-gray-200 rounded-lg p-4">
-            <div className="text-sm font-medium text-gray-900">2. Manage Files</div>
-            <p className="mt-1 text-sm text-gray-500">
-              Organize and view all your uploaded files.
-            </p>
-          </div>
-          <div className="border border-gray-200 rounded-lg p-4">
-            <div className="text-sm font-medium text-gray-900">3. Embed Chatbot</div>
-            <p className="mt-1 text-sm text-gray-500">
-              Copy the embed code to add chat to your website.
-            </p>
+
+        {/* Code Box Section */}
+        <div className="bg-white/70 backdrop-blur-md shadow-md rounded-2xl p-6 space-y-4">
+          <h2 className="text-xl font-semibold text-gray-700 mb-2">💻 Code Box</h2>
+          <textarea
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            placeholder="Paste or write code here..."
+            className="textarea h-44 font-mono text-sm rounded-xl shadow-inner resize-none"
+          />
+          <div className="flex justify-end">
+            <button
+              onClick={handleCopyCode}
+              disabled={!code.trim()}
+              className={`btn-primary px-4 py-2 rounded-md text-white font-medium transition ${
+                !code.trim() ? "bg-blue-300 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+              }`}
+            >
+              Copy Code
+            </button>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default DashboardPage;

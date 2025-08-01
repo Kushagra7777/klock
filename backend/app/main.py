@@ -20,3 +20,6 @@ app.add_middleware(
 )
 
 app.include_router(chat.router, prefix="/chat", tags=["Chat"])
+
+
+# uvicorn app.main:app --reload
