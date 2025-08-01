@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Klock - Local RAG Chatbot</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>Klock</h1>
+            {% if user %}
+                <div>
+                    <span>Welcome, {{ user.username }}!</span>
+                    <a href="/logout">Logout</a>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

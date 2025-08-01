@@ -1,0 +1,38 @@
+from pydantic import BaseModel
+from typing import Optional
+from datetime import datetime
+
+class UserBase(BaseModel):
+    username: str
+
+class UserCreate(UserBase):
+    password: str
+
+class User(UserBase):
+    id: int
+    created_at: datetime
+    
+    class Config:
+        orm_mode = True
+
+class DocumentBase(BaseModel):
+    filename: str
+    file_path: str
+
+class DocumentCreate(DocumentBase):
+    user_id: int
+
+class Document(DocumentBase):
+    id: int
+    user_id: int
+    uploaded_at: datetime
+    
+    class Config:
+        orm_mode = True
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: Optional[str] = None
